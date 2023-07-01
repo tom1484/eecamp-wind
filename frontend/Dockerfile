@@ -1,11 +1,12 @@
-FROM node:16.7.0
+FROM node:18.14.2
 
 WORKDIR /code
 
-COPY ["package.json", "package-lock.json*", "./"]
+COPY package*.json pnpm-lock.yaml ./
 
-RUN yarn install
+RUN npm install -g pnpm
+RUN pnpm install
 
 COPY . .
 
-CMD ["yarn", "start"]
+CMD ["pnpm", "start"]

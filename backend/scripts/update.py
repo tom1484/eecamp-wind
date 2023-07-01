@@ -3,17 +3,18 @@ import json
 from datetime import datetime
 from time import time
 
-BASE_URL = 'http://localhost:9487'
-API_AUTH = '/wind/update'
+BASE_URL = 'http://localhost:8085'
+API_AUTH = '/update'
 
 session = requests.Session()
 
 for ID in range(5):
 
-    f = open(f"records/{ID}.txt", "r")
-    print(f"ID: {ID}\n")
+    # f = open(f"records/{ID}.txt", "r")
+    # print(f"ID: {ID}\n")
 
-    RFIDs = f.read().split("\n")
+    # RFIDs = f.read().split("\n")
+    RFIDs = ["f323b309", "f323b309"]
 
     for RFID in RFIDs:
         if RFID == "end":

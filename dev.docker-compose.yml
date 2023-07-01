@@ -2,12 +2,12 @@ version: '3.7'
 
 services:
   mongo:
-    image: mongodb:6.0
+    image: mongodb/mongodb-community-server:6.0-ubi8
     container_name: eecamp-wind-mongo
     expose:
       - "27017"
     networks:
-      - eecamp-wind
+      - nginx
     volumes:
       - eecamp-wind-mongo:/data/db
 
@@ -21,14 +21,14 @@ services:
     ports:
       - "8085:80"
     networks:
-      - eecamp-wind
+      - nginx
     depends_on:
       - backend
       - frontend
 
   backend:
-    image: eecamp-wind-backend-debug
-    container_name: eecamp-wind-backend-debug
+    image: eecamp-wind-backend-dev
+    container_name: eecamp-wind-backend-dev
     build:
       context: ./backend
       dockerfile: Dockerfile
@@ -36,46 +36,57 @@ services:
     tty: true
     environment:
       PORT: "9487"
-    command: [ "/bin/bash" ]
-    links:
-      - mongo
     ports:
       - "9487:9487"
+    expose:
+      - "9487"
     networks:
-      - eecamp-wind
+      - nginx
     volumes:
       - ./backend:/source
+    x-develop:
+      watch:
+        - action: sync
+          path: ./backend/app
+          target: /code/app
+        - action: rebuild
+          path: ./backend/package.json
     depends_on:
       - mongo
 
   frontend:
-    image: eecamp-wind-frontend-debug
-    container_name: eecamp-wind-frontend-debug
+    image: eecamp-wind-frontend-dev
+    container_name: eecamp-wind-frontend-dev
     build:
       context: ./frontend
+      # context: ./test-frontend
       dockerfile: Dockerfile
     stdin_open: true
     tty: true
     environment:
       PORT: "6987"
-      BACKEND_IP: "140.112.194.49"
-      BACKEND_PORT: "9487"
-    command: [ "/bin/bash" ]
-    links:
-      - mongo
     ports:
       - "6987:6987"
+    expose:
+      - "6987"
     networks:
-      - eecamp-wind
+      - nginx
     volumes:
       - ./frontend:/source
+    x-develop:
+      watch:
+        - action: sync
+          path: ./frontend/src
+          target: /code/src
+        - action: rebuild
+          path: ./frontend/package.json
     depends_on:
       - backend
 
 networks:
-  eecamp-wind:
-    external:
-      name: eecamp
+  nginx:
+    external: true
 
 volumes:
   eecamp-wind-mongo:
+

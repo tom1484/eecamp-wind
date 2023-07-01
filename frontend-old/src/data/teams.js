@@ -9,7 +9,7 @@ class Team {
 
     async update() {
         let post_data = {
-            url: `http://${process.env.BACKEND_IP}:${process.env.BACKEND_PORT}/wind/fetch`,
+            url: `http://localhost:8085/fetch`,
             method: "post",
             data: {},
         };

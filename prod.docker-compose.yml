@@ -2,12 +2,12 @@ version: '3.7'
 
 services:
   mongo:
-    image: mongodb:6.0
+    image: mongodb/mongodb-community-server:6.0-ubi8
     container_name: eecamp-wind-mongo
     expose:
       - "27017"
     networks:
-      - eecamp-wind
+      - nginx
     volumes:
       - eecamp-wind-mongo:/data/db
 
@@ -21,7 +21,7 @@ services:
     ports:
       - "8085:80"
     networks:
-      - eecamp-wind
+      - nginx
     depends_on:
       - backend
       - frontend
@@ -32,16 +32,14 @@ services:
     build:
       context: ./backend
       dockerfile: Dockerfile
-    stdin_open: true
-    tty: true
     environment:
       PORT: "9487"
-    links:
-      - mongo
     ports:
       - "9487:9487"
+    expose:
+      - "9487"
     networks:
-      - eecamp-wind
+      - nginx
     depends_on:
       - mongo
 
@@ -50,26 +48,23 @@ services:
     container_name: eecamp-wind-frontend
     build:
       context: ./frontend
+      # context: ./test-frontend
       dockerfile: Dockerfile
-    stdin_open: true
-    tty: true
     environment:
+      # CI: "true"
       PORT: "6987"
-      BACKEND_IP: "140.112.194.49"
-      BACKEND_PORT: "9487"
-    links:
-      - mongo
     ports:
       - "6987:6987"
+    expose:
+      - "6987"
     networks:
-      - eecamp-wind
+      - nginx
     depends_on:
       - backend
 
 networks:
-  eecamp-wind:
-    external:
-      name: eecamp
+  nginx:
+    external: true
 
 volumes:
   eecamp-wind-mongo:

@@ -11,7 +11,7 @@
   },
   "_moduleAliases": {
     "@root": ".",
-    "@models": "app/models", 
+    "@models": "app/models",
     "@routers": "app/routers"
   },
   "author": "",
@@ -29,5 +29,10 @@
     "restart": "kill-port 9487",
     "crash": "kill-port 9487"
   },
-  "delay": "1500"
+  "delay": "1500",
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.60.1",
+    "@typescript-eslint/parser": "^5.60.1",
+    "eslint": "^8.44.0"
+  }
 }

@@ -7,6 +7,7 @@ export const Routes = {
     Settings: { path: "/settings" },
     Upgrade: { path: "/upgrade" },
     RankingPage: { path: "/ranking" },
+    // RankingPage: { path: "/" },
     BootstrapTables: { path: "/tables/bootstrap-tables" },
     Billing: { path: "/examples/billing" },
     Invoice: { path: "/examples/invoice" },

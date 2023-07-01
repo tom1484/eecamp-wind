@@ -60,7 +60,7 @@ const RouteWithLoader = ({ component: Component, ...rest }) => {
   }, []);
 
   return (
-    <Route {...rest} render={props => ( <> <Preloader show={loaded ? false : true} /> <Component {...props} /> </> ) } />
+    <Route {...rest} render={props => (<> <Preloader show={loaded ? false : true} /> <Component {...props} /> </>)} />
   );
 };
 
@@ -171,9 +171,9 @@ export default () => (
     <RouteWithSidebar exact path={Routes.DocsChangelog.path} component={DocsChangelog} />
 
     {/* RankingPage */}
-    <RouteWithoutSidebar exact path={Routes.Settings.path} component={Settings} />
     <RouteWithoutSidebar exact path={Routes.RankingPage.path} component={RankingPage} />
-    <RouteWithoutSidebar exact path={Routes.BootstrapTables.path} component={BootstrapTables} />
+    <RouteWithSidebar exact path={Routes.Settings.path} component={Settings} />
+    <RouteWithSidebar exact path={Routes.BootstrapTables.path} component={BootstrapTables} />
 
     <Redirect to={Routes.NotFound.path} />
   </Switch>
