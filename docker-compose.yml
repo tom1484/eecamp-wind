@@ -1,0 +1,59 @@
+version: '3.7'
+
+services:
+  mongo:
+    image: mongodb/mongodb-community-server:6.0-ubi8
+    container_name: eecamp-wind-mongo
+    expose:
+      - "27017"
+    networks:
+      - nginx
+    volumes:
+      - eecamp-wind-mongo:/data/db
+
+  nginx:
+    image: eecamp-wind-nginx
+    container_name: eecamp-wind-nginx
+    hostname: eecamp-wind-nginx
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    ports:
+      - "8081:80"
+    networks:
+      - nginx
+    depends_on:
+      - application
+
+  application:
+    image: eecamp-wind
+    container_name: eecamp-wind
+    build:
+      context: ./application/
+      dockerfile: Dockerfile
+    environment:
+      DB_URI: "mongodb://mongo:27017"
+      NEXT_PUBLIC_API_URI: "http://localhost:8081"
+    expose:
+      - "3000"
+    networks:
+      - nginx
+    depends_on:
+      - mongo
+    x-develop:
+      watch:
+        - action: sync
+          path: ./application
+          target: /code
+          ignore:
+            - node_modules/
+            - package*.json
+        - action: rebuild
+          path: ./application/package.json
+
+networks:
+  nginx:
+    external: true
+
+volumes:
+  eecamp-wind-mongo:
