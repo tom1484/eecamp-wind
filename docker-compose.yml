@@ -33,7 +33,7 @@ services:
       dockerfile: Dockerfile
     environment:
       DB_URI: "mongodb://mongo:27017"
-      NEXT_PUBLIC_API_URI: "http://localhost:8081"
+      NEXT_PUBLIC_API_URI: "http://eecamp-wind.duckdns.org"
     expose:
       - "3000"
     networks:
