@@ -3,6 +3,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
+  console.log(req);
   if (req.method === "POST") {
     // console.log("update.ts: ", req.body)
     try {
