@@ -1,8 +1,7 @@
 import requests
 import sys
 
-BASE_URL = 'http://localhost'
-# BASE_URL = 'https://eecamp-wind.vercel.app'
+BASE_URL = 'http://localhost:8085'
 API_AUTH = '/api/cards/load'
 
 session = requests.Session()

@@ -1,15 +1,12 @@
 import requests
-import sys
 
-BASE_URL = 'http://localhost'
-# BASE_URL = 'https://eecamp-wind.vercel.app'
+BASE_URL = 'http://localhost:8085'
 API_AUTH = '/api/teams/update'
 
 session = requests.Session()
 
 data = {
     "id": 0,
-    # "RFID": "73bc180a",
     "RFID": "99ae0db4",
 }
 
