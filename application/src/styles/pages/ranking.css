@@ -1,5 +1,16 @@
 @import url("https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@1,500&display=swap");
 
+.Body {
+  width: 100%;
+  height: calc(100vh - 16px);
+
+  overflow: scroll;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
 .Layout {
   display: flex;
   flex-direction: column;
@@ -7,20 +18,18 @@
   justify-contents: space-between;
 
   width: 100%;
-}
 
-.Header {
-  background: #7dbcea;
+  padding-bottom: 4em;
 }
 
 .Title {
   font-family: "Barlow Condensed", sans-serif;
-  font-size: 3.5em;
+  font-size: 5em;
+
+  color: #cf1418;
+
+  text-shadow: 5px 5px #999;
 
   margin-top: 0.4em;
   margin-bottom: 0.4em;
-}
-
-.Content {
-  background: #108ee9;
 }

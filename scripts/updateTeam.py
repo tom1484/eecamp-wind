@@ -1,13 +1,15 @@
 import requests
 
-BASE_URL = 'http://localhost:8085'
+# BASE_URL = 'http://localhost:8085'
+BASE_URL = 'https://eecamp-wind.ntuee.org'
 API_AUTH = '/api/teams/update'
 
 session = requests.Session()
 
 data = {
     "id": 0,
-    "RFID": "99ae0db4",
+    # "RFID": "22394b34",
+    "RFID": input(),
 }
 
 req = session.post(

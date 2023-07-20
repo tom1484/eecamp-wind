@@ -1,7 +1,8 @@
 import requests
 import sys
 
-BASE_URL = 'http://localhost:8085'
+# BASE_URL = 'http://localhost:8085'
+BASE_URL = 'https://eecamp-wind.ntuee.org'
 API_AUTH = '/api/teams/load'
 
 session = requests.Session()

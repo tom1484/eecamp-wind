@@ -1,0 +1,45 @@
+@import url("https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@1,400;1,500&display=swap");
+
+.HistoryHeader {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-contents: space-between;
+
+  background-color: #cf1418;
+
+  .HistoryCell {
+    font-family: "Barlow Condensed", sans-serif;
+    font-weight: 500;
+
+    color: #fff;
+  }
+}
+
+.HistoryEntry {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-contents: space-between;
+
+  border-style: solid;
+  border-width: 0.1em 0em 0em 0em;
+  border-color: #ddd;
+
+  background-color: #fff;
+
+  .HistoryCell {
+    font-family: "Barlow Condensed", sans-serif;
+    font-weight: 400;
+  }
+}
+
+.HistoryCell {
+  font-size: 2em;
+
+  padding-top: 0.3em;
+  padding-bottom: 0.3em;
+
+  width: 6em;
+  text-align: center;
+}
