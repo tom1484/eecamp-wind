@@ -1,3 +1,10 @@
+"""
+Example CSV file content:
+FFFF1234,10
+AAAA1234,20
+panelty,-5
+"""
+
 import requests
 import sys
 

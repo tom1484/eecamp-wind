@@ -1,3 +1,11 @@
+"""
+Example CSV file content:
+team0
+team1
+teamHeHe
+team name
+"""
+
 import requests
 import sys
 
